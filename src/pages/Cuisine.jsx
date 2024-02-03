@@ -6,6 +6,9 @@ import {Link, useParams} from 'react-router-dom'
 export default function Cuisine() {
     const [cuisine, setCuisine] = useState([]);
     let params = useParams()
+    useEffect(()=> {
+        getCuisine(params.type)
+    }, [params.type])
     
     const getCuisine = async (name) => {
         const data = await fetch(
@@ -15,9 +18,7 @@ export default function Cuisine() {
         setCuisine(recipes.results)
         console.log(recipes.results)
     }
-    useEffect(()=> {
-        getCuisine(params.type)
-    }, [params.type])
+    
     return (
         <Grid>
         {cuisine.map(item=> {
