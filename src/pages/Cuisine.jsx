@@ -3,11 +3,13 @@ import styled from "styled-components";
 import {motion} from 'framer-motion'
 import {Link, useParams} from 'react-router-dom'
 
+
 export default function Cuisine() {
+ 
     const [cuisine, setCuisine] = useState([]);
     let params = useParams()
     useEffect(()=> {
-        getCuisine(params.type)
+        getCuisine(params.type, 'https://api.spoonacular.com/recipes/complexSearch?apiKey=a75795e5e52d40d4ad16a13c53b75620&cuisine=', setCuisine)
     }, [params.type])
     
     const getCuisine = async (name) => {
@@ -16,16 +18,23 @@ export default function Cuisine() {
           );
         const recipes = await data.json();
         setCuisine(recipes.results)
-        console.log(recipes.results)
     }
     
     return (
-        <Grid>
+        <Grid
+        animate={{opacity:1}}
+        initial={{opacity:0}}
+        exit={{opacity:0}}
+        transition={{duration:0.5}}
+        >
         {cuisine.map(item=> {
             return (
                 <Card key={item.id}>
+                    <Link to={`/recipe/${item.id}`}>
+                  
                     <img src={item.image} alt={item.title}/>
                     <h4>{item.title}</h4>
+                    </Link>
                 </Card>
             )
         })}
@@ -33,7 +42,7 @@ export default function Cuisine() {
     )
 }
 
-const Grid = styled.div`
+const Grid = styled(motion.div)`
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr) );
 grid-gap: 3rem;

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
+import {Link} from 'react-router-dom';
 
 export default function Popular() {
   const [popular, setPopular] = useState([]);
@@ -31,7 +32,7 @@ export default function Popular() {
           options={{
             perPage: 4,
             arrows: false,
-            pagination: false,
+            pagination: true,
             drag: "free",
             gap: "5rem",
           }}
@@ -40,9 +41,11 @@ export default function Popular() {
             return (
               <SplideSlide>
                 <Card key={recipe.id}>
+                    <Link to={`/recipe/${recipe.id}`}>
                   <p>{recipe.title}</p>
                   <img src={recipe.image} alt={recipe.title} />
                   <Gradient />
+                  </Link>
                 </Card>
               </SplideSlide>
             );
@@ -61,6 +64,7 @@ const Card = styled.div`
   border-radius: 2rem;
   overflow: hidden;
   position: relative;
+  cursor: pointer;
 
   img {
     border-radius: 2rem;
