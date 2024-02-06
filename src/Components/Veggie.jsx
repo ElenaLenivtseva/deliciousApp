@@ -5,6 +5,8 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import {Link} from 'react-router-dom';
 import Card from "../Components/Card.jsx";
+import Wrapper from "../Components/Wrapper.jsx";
+
 export default function Veggie() {
   const [veggie, setVeggie] = useState([]);
   useEffect(() => {
@@ -49,7 +51,3 @@ export default function Veggie() {
     </div>
   );
 }
-const Wrapper = styled.div`
-  margin: 4rem 0r;
-  padding-bottom: 4rem;
-`;
