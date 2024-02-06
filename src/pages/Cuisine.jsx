@@ -20,10 +20,9 @@ export default function Cuisine() {
     const data = await fetch(
       `https://api.spoonacular.com/recipes/complexSearch?apiKey=a75795e5e52d40d4ad16a13c53b75620&cuisine=${name}`
     )
-      .catch((err) => console.warn(err))
-      .finally(setIsLoading(false));
     const recipes = await data.json();
     setCuisine(recipes.results);
+    setIsLoading(false)
   };
   return (
     <Grid>
