@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Card from "../Components/Card.jsx";
 import Wrapper from "../Components/Wrapper.jsx";
 
 export default function Veggie() {
+  const { isLoading, setIsLoading } = useState(true);
   const [veggie, setVeggie] = useState([]);
   useEffect(() => {
     getVeggie();
@@ -23,30 +24,35 @@ export default function Veggie() {
       const data = await api.json();
       localStorage.setItem("veggie", JSON.stringify(data.recipes));
       setVeggie(data.recipes);
+      setIsLoading(false);
     }
   };
+  
   return (
     <div>
       <Wrapper>
         <h3>Our Vegetarian Picks</h3>
-
-        <Splide
-          options={{
-            perPage: 3,
-            arrows: false,
-            pagination: true,
-            drag: "free",
-            gap: "5rem",
-          }}
-        >
-          {veggie.map((item) => {
-            return (
-              <SplideSlide>
-                <Card item={item} type='picks'/>
-              </SplideSlide>
-            );
-          })}
-        </Splide>
+        {isLoading ? (
+          <h4>Идет загрузка...</h4>
+        ) : (
+          <Splide
+            options={{
+              perPage: 3,
+              arrows: false,
+              pagination: true,
+              drag: "free",
+              gap: "5rem",
+            }}
+          >
+            {veggie.map((item) => {
+              return (
+                <SplideSlide>
+                  <Card item={item} type="picks" />
+                </SplideSlide>
+              );
+            })}
+          </Splide>
+        )}
       </Wrapper>
     </div>
   );

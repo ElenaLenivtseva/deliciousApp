@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Card from "../Components/Card.jsx";
 import Wrapper from "../Components/Wrapper.jsx";
 
 export default function Popular() {
+  const { isLoading, setIsLoading } = useState(true);
   const [popular, setPopular] = useState([]);
   useEffect(() => {
     getPopular();
@@ -23,34 +24,35 @@ export default function Popular() {
       const data = await api.json();
       localStorage.setItem("popular", JSON.stringify(data.recipes));
       setPopular(data.recipes);
+      setIsLoading(false);
     }
   };
   return (
     <div>
       <Wrapper>
         <h3>Popular Picks</h3>
-
-        <Splide
-          options={{
-            perPage: 4,
-            arrows: false,
-            pagination: true,
-            drag: "free",
-            gap: "5rem",
-          }}
-        >
-          {popular.map((item) => {
-            return (
-              <SplideSlide>
-                <Card item={item} type='picks'/>
-              </SplideSlide>
-            );
-          })}
-        </Splide>
+        {isLoading ? (
+          <h4>Идет загрузка...</h4>
+        ) : (
+          <Splide
+            options={{
+              perPage: 4,
+              arrows: false,
+              pagination: true,
+              drag: "free",
+              gap: "5rem",
+            }}
+          >
+            {popular.map((item) => {
+              return (
+                <SplideSlide>
+                  <Card item={item} type="picks" />
+                </SplideSlide>
+              );
+            })}
+          </Splide>
+        )}
       </Wrapper>
     </div>
   );
 }
-
-
-

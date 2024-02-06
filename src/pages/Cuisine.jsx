@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Link, useParams } from "react-router-dom";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+// import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+// import "react-loading-skeleton/dist/skeleton.css";
 import Card from "../Components/Card.jsx";
 import Grid from "../Components/Grid.jsx";
+import { Skeleton } from "../Components/Skeleton.jsx";
 
 export default function Cuisine() {
   const [cuisine, setCuisine] = useState([]);
@@ -31,29 +32,17 @@ export default function Cuisine() {
 
   return (
     <Grid>
-      {isLoading
-        ? cuisine.map((item) => {
-            return (
-            //   <Card key={item.id}>
-            //     <Link to={`/recipe/${item.id}`}>
-            //       <Skeleton width={100} height={100} />
-            //       <Skeleton width={100} height={20} />
-            //       {/* <h4>{item.title}</h4> */}
-            //     </Link>
-            //   </Card>
-            <Card item={item}/>
-            );
-          })
-        : cuisine.map((item) => {
-            return (
-              <Card item={item}>
-              </Card>
-            );
-          })}
-          </Grid>
- 
+      {isLoading ? (
+        <>
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+        </>
+      ) : (
+        cuisine.map((item) => {
+          return <Card item={item} />;
+        })
+      )}
+    </Grid>
   );
 }
-
-
-
