@@ -5,6 +5,8 @@ import styled from "styled-components";
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import Card from "../Components/Card.jsx";
+import Grid from "../Components/Grid.jsx";
+
 
 export default function Searched() {
     const [isLoading, setIsLoading] = useState(true);
@@ -43,10 +45,4 @@ export default function Searched() {
         </Grid>
     )
 }
-
-const Grid = styled.div`
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr) );
-grid-gap: 3rem;
-`;
 

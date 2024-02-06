@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Card from "../Components/Card.jsx";
+import Grid from "../Components/Grid.jsx";
 
 export default function Cuisine() {
   const [cuisine, setCuisine] = useState([]);
@@ -29,12 +30,7 @@ export default function Cuisine() {
   };
 
   return (
-    <Grid
-      animate={{ opacity: 1 }}
-      initial={{ opacity: 0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <Grid>
       {isLoading
         ? cuisine.map((item) => {
             return (
@@ -54,26 +50,10 @@ export default function Cuisine() {
               </Card>
             );
           })}
-    </Grid>
+          </Grid>
+ 
   );
 }
 
-const Grid = styled(motion.div)`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  grid-gap: 3rem;
-`;
 
-// const Card = styled.div`
-//   img {
-//     width: 100%;
-//     border-radius: 2rem;
-//   }
-//   a {
-//     text-decoration: none;
-//   }
-//   h4 {
-//     text-align: center;
-//     padding: 1rem;
-//   }
-// `;
+
