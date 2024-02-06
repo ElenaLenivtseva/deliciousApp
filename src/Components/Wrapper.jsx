@@ -1,10 +1,8 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 
-export default function Wrapper ({children}) {
-    return (
-        <WrapperSt>{children}</WrapperSt>
-    )
+export default function Wrapper({ children }) {
+  return <WrapperSt>{children}</WrapperSt>;
 }
 const WrapperSt = styled.div`
   margin: 4rem 0r;

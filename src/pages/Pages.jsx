@@ -6,9 +6,9 @@ import Searched from "./Searched.jsx";
 import Recipe from "../Components/Recipe.jsx";
 import { AnimatePresence } from "framer-motion";
 export default function Pages() {
-  const location = useLocation()
+  const location = useLocation();
   return (
-    <AnimatePresence mode='wait'>
+    <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/cuisine/:type" element={<Cuisine />} />

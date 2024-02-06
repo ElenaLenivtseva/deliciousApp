@@ -11,12 +11,11 @@ export default function Recipe() {
   }, [params]);
 
   const fetchDetails = async (params) => {
-      const api = await fetch(
-        `https://api.spoonacular.com/recipes/${params.name}/information?apiKey=a75795e5e52d40d4ad16a13c53b75620`
+    const api = await fetch(
+      `https://api.spoonacular.com/recipes/${params.name}/information?apiKey=a75795e5e52d40d4ad16a13c53b75620`
     );
-      const data = await api.json();
-      setDetails(data)
-    
+    const data = await api.json();
+    setDetails(data);
   };
 
   return (
@@ -38,23 +37,19 @@ export default function Recipe() {
         >
           Ingredients
         </Button>
-        
-        {activeTab === 'instructions' ?  
-          (<div>
+
+        {activeTab === "instructions" ? (
+          <div>
             <h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
             <h3 dangerouslySetInnerHTML={{ __html: details.instructions }}></h3>
-          </div>)
-        
-        :        
-          (<ul>
-            {details?.extendedIngredients.map(ing => {
-              return (<li key={ing.id}>{ing.original}</li>);
+          </div>
+        ) : (
+          <ul>
+            {details?.extendedIngredients.map((ing) => {
+              return <li key={ing.id}>{ing.original}</li>;
             })}
-            
-          </ul>)
-}
-        
-        
+          </ul>
+        )}
       </Info>
     </DetailWrapper>
   );
@@ -90,7 +85,7 @@ const Button = styled.button`
   cursor: pointer;
   transition: 0.2s linear;
   &:hover {
-    transform: scale(1.06, 1.06)
+    transform: scale(1.06, 1.06);
   }
 `;
 

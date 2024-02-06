@@ -1,44 +1,42 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function Card ({item, type}) {
-    if (type==='picks') {
-        return (
-            <CardPicks key={item.id}>
-                    <Link to={`/recipe/${item.id}`}>
-                  <p>{item.title}</p>
-                  <img src={item.image} alt={item.title} />
-                  <Gradient />
-                  </Link>
-            </CardPicks>
-        )
-    } else {
-        return (
-            <CardSt key={item.id}>
-                    <Link to={`/recipe/${item.id}`}>
-                      <img src={item.image} alt={item.title} />
-                      <h4>{item.title}</h4>
-                    </Link>
-            </CardSt>
-        )
-    }
-    
+export default function Card({ item, type }) {
+  if (type === "picks") {
+    return (
+      <CardPicks key={item.id}>
+        <Link to={`/recipe/${item.id}`}>
+          <p>{item.title}</p>
+          <img src={item.image} alt={item.title} />
+          <Gradient />
+        </Link>
+      </CardPicks>
+    );
+  } else {
+    return (
+      <CardSt key={item.id}>
+        <Link to={`/recipe/${item.id}`}>
+          <img src={item.image} alt={item.title} />
+          <h4>{item.title}</h4>
+        </Link>
+      </CardSt>
+    );
+  }
 }
 const CardSt = styled.div`
-img{
+  img {
     width: 100%;
     border-radius: 2rem;
-
-}
-a {
+  }
+  a {
     text-decoration: none;
-}
-h4 {
-    text-align:center;
+  }
+  h4 {
+    text-align: center;
     padding: 1rem;
-}
-`
+  }
+`;
 const CardPicks = styled.div`
   min-height: 25rem;
   border-radius: 2rem;
